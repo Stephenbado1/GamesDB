@@ -44,7 +44,6 @@ public class SQLUtil {
         } catch (SQLException ex) {
         }
     }
-
     @Override
     protected void finalize() throws Throwable {
         closeConnection(); 
