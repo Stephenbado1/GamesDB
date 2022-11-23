@@ -5,10 +5,12 @@
  */
 package utils;
 
+import bo.Staff;
 /**
  *
  * @author stephenbadeaux
  */
 public class GlobalData {
+    public static Staff stf = null;
     
 }
