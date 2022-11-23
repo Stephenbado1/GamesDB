@@ -5,39 +5,41 @@
  */
 package bo;
 
+import javax.print.attribute.standard.PrinterName;
+
 /**
  *
  * @author stephenbadeaux
  */
 public class Game {
-    private int gId;
-    private String gName;
+    private String gameName;
+    private String pubName;
     private String releaseDate;
     private int score;
     private double price;
     private int cId;
     private int stfId;
 
-    public Game(int gId, String gName, String releaseDate, int score, double price, int cId, int stfId) {
-        this.gId = gId;
-        this.gName = gName;
+    public Game(String gameName, String pubName, String releaseDate, int score, double price, int cId, int stfId) {
+        this.gameName = gameName;
+        this.pubName = pubName;
         this.releaseDate = releaseDate;
         this.score = score;
         this.price = price;
         this.cId = cId;
         this.stfId = stfId;
     }
-    public int getgId() {
-        return gId;
+    public String getGameName() {
+        return gameName;
     }
-    public void setgId(int gId) {
-        this.gId = gId;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
-    public String getgName() {
-        return gName;
+    public String getPubName() {
+        return pubName;
     }
-    public void setgName(String gName) {
-        this.gName = gName;
+    public void setPubName(String pubName) {
+        this.pubName = pubName;
     }
     public String getReleaseDate() {
         return releaseDate;
