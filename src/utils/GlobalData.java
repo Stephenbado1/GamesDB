@@ -11,6 +11,6 @@ import bo.Staff;
  * @author stephenbadeaux
  */
 public class GlobalData {
-    public static Staff stf = null;
+    public static Staff stf = null;//Currently logged in Staff
     
 }

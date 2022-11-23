@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.Date;
 import utils.SQLUtil;
 
 /**
@@ -19,8 +20,8 @@ public class GameHandler {
         sqlUtil = new SQLUtil();
         
     }
-    public int addGame(String gameName, String pubName, String releaseDate, int score){
-        String cmdTemplate = "insert into Games(gameName, pubName, releaseDate, score) values('%s', '%s', '%s', '%f', '%d')";
+    public int addGame(String gameName, String pubName, int releaseDate, int score){
+        String cmdTemplate = "insert into Games(gameName, pubName, releaseDate, score) values('%s', '%s', '%d', '%d')";
         String cmd = String.format(cmdTemplate, gameName, pubName, releaseDate, score);
         return sqlUtil.executeUpdate(cmd);
     }

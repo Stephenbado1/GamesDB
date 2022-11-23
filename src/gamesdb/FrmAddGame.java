@@ -6,10 +6,15 @@
 package gamesdb;
 
 import bo.Publisher;
+import dao.GameHandler;
 import dao.PublisherHandler;
+import java.lang.reflect.Member;
+import java.util.Date;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import utils.GlobalData;
 
 /**
  *
@@ -48,16 +53,14 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
 
         JLName = new javax.swing.JLabel();
         JLPublisher = new javax.swing.JLabel();
-        JLPrice = new javax.swing.JLabel();
         JLScore = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         chbxScore = new java.awt.Choice();
         JLRDate = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtPrice = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
         cbxPublisher = new javax.swing.JComboBox<>();
+        txtDate = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -67,8 +70,6 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         JLName.setText("Name");
 
         JLPublisher.setText("Publisher");
-
-        JLPrice.setText("Price");
 
         JLScore.setText("Game Score");
 
@@ -94,49 +95,46 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
             }
         });
 
-        txtDate.setText("YYYY-MM-DD");
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
-            }
-        });
-
         cbxPublisher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtDate.setText("YYYYMMDD");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(432, 432, 432)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancel)
-                            .addComponent(btnSubmit)))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLPrice)
-                            .addComponent(JLScore)
-                            .addComponent(JLRDate)
                             .addComponent(JLPublisher)
                             .addComponent(JLName))
-                        .addGap(37, 37, 37)
+                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(chbxScore, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                .addComponent(cbxPublisher, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 55, Short.MAX_VALUE)))
-                .addGap(30, 30, 30))
+                            .addComponent(cbxPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLScore)
+                            .addComponent(JLRDate))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(chbxScore, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(txtDate))
+                        .addGap(171, 171, 171)))
+                .addContainerGap(85, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancel)
+                    .addComponent(btnSubmit))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JLName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, Short.MAX_VALUE))
@@ -144,11 +142,7 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLPublisher)
                     .addComponent(cbxPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLPrice)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JLScore)
                     .addComponent(chbxScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,11 +150,10 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLRDate)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(btnSubmit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancel)
-                .addGap(48, 48, 48))
+                .addComponent(btnCancel))
         );
 
         pack();
@@ -168,7 +161,23 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         //Get input values
-        
+        String gameName = txtName.getText();
+        Publisher p = (Publisher)cbxPublisher.getSelectedItem();
+        String pubName = p.getpName();
+        int releaseDate = Integer.parseInt(txtDate.getText());
+        int score = chbxScore.getSelectedIndex();
+        int stfId = GlobalData.stf.getstfId();
+        int ret = new GameHandler().addGame(gameName, pubName, releaseDate, score);
+        if (ret == -1){
+            JOptionPane.showMessageDialog(this, "Failed to add Game");
+        }else{
+            JOptionPane.showMessageDialog(this, "Game added successfully");
+            //Clear the form
+            txtName.setText(null);
+            cbxPublisher.setSelectedIndex(0);
+            chbxScore.select(0);
+            txtDate.setText("YYYYMMDD");
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -179,14 +188,9 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLName;
-    private javax.swing.JLabel JLPrice;
     private javax.swing.JLabel JLPublisher;
     private javax.swing.JLabel JLRDate;
     private javax.swing.JLabel JLScore;
@@ -196,6 +200,5 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
     private java.awt.Choice chbxScore;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
 }
