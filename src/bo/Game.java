@@ -5,6 +5,7 @@
  */
 package bo;
 
+import java.util.Vector;
 import javax.print.attribute.standard.PrinterName;
 
 /**
@@ -16,19 +17,23 @@ public class Game {
     private String pubName;
     private String releaseDate;
     private int score;
-    private double price;
-    private int cId;
-    private int stfId;
 
     public Game(String gameName, String pubName, String releaseDate, int score, double price, int cId, int stfId) {
         this.gameName = gameName;
         this.pubName = pubName;
         this.releaseDate = releaseDate;
         this.score = score;
-        this.price = price;
-        this.cId = cId;
-        this.stfId = stfId;
     }
+    public Vector getRow(){
+        Vector vec = new Vector();
+        vec.add(this.gameName);
+        vec.add(this.pubName);
+        vec.add(this.releaseDate);
+        vec.add(this.score);
+        
+        return vec;
+    }
+    
     public String getGameName() {
         return gameName;
     }
@@ -52,23 +57,5 @@ public class Game {
     }
     public void setScore(int score) {
         this.score = score;
-    }
-    public double getPrice() {
-        return price;
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    public int getcId() {
-        return cId;
-    }
-    public void setcId(int cId) {
-        this.cId = cId;
-    }
-    public int getStfId() {
-        return stfId;
-    }
-    public void setStfId(int stfId) {
-        this.stfId = stfId;
     }
 }
