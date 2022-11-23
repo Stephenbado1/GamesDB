@@ -5,6 +5,7 @@
  */
 package bo;
 
+import java.util.Date;
 import java.util.Vector;
 import javax.print.attribute.standard.PrinterName;
 
@@ -15,10 +16,10 @@ import javax.print.attribute.standard.PrinterName;
 public class Game {
     private String gameName;
     private String pubName;
-    private String releaseDate;
+    private int releaseDate;
     private int score;
 
-    public Game(String gameName, String pubName, String releaseDate, int score, double price, int cId, int stfId) {
+    public Game(String gameName, String pubName, int releaseDate, int score) {
         this.gameName = gameName;
         this.pubName = pubName;
         this.releaseDate = releaseDate;
@@ -33,7 +34,6 @@ public class Game {
         
         return vec;
     }
-    
     public String getGameName() {
         return gameName;
     }
@@ -46,10 +46,10 @@ public class Game {
     public void setPubName(String pubName) {
         this.pubName = pubName;
     }
-    public String getReleaseDate() {
+    public int getReleaseDate() {
         return releaseDate;
     }
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(int releaseDate) {
         this.releaseDate = releaseDate;
     }
     public int getScore() {
