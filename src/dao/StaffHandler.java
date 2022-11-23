@@ -24,7 +24,7 @@ public class StaffHandler {
     public Staff login(String username, String password){
         Staff stf = null;
         try {
-            String cmd = String.format("Select staffID, staffName from Staff where staffUN = '%s' and staffPW = '%s'", username, password);
+            String cmd = String.format("Select staffID, staffName from Staff where staffUN = '%s' and staffPW = '%s';", username, password);
             ResultSet rs = sqlUtil.executeQuery(cmd);
             if (rs.next()){
                 //Get info

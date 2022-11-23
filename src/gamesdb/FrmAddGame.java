@@ -5,6 +5,12 @@
  */
 package gamesdb;
 
+import bo.Publisher;
+import dao.PublisherHandler;
+import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author stephenbadeaux
@@ -14,13 +20,20 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmAddGame
      */
+    private void populatePublishers(){
+        List<Publisher> publishers = new PublisherHandler().getPublisher();
+        ComboBoxModel cbxModel = new DefaultComboBoxModel(publishers.toArray());
+        cbxPublisher.setModel(cbxModel);
+        
+    }
     private void populateScore(){
         for(int i=100; i>=0; i--){
-            choiceBoxScore.addItem(Integer.toString(i));
+            chbxScore.addItem(Integer.toString(i));
         }
     }
     public FrmAddGame() {
         initComponents();
+        populatePublishers();
         populateScore();
     }
 
@@ -37,14 +50,14 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         JLPublisher = new javax.swing.JLabel();
         JLPrice = new javax.swing.JLabel();
         JLScore = new javax.swing.JLabel();
-        txtPublisher = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        choiceBoxScore = new java.awt.Choice();
+        chbxScore = new java.awt.Choice();
         JLRDate = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
         txtDate = new javax.swing.JTextField();
+        cbxPublisher = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -58,12 +71,6 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         JLPrice.setText("Price");
 
         JLScore.setText("Game Score");
-
-        txtPublisher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPublisherActionPerformed(evt);
-            }
-        });
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +101,8 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
             }
         });
 
+        cbxPublisher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,15 +124,13 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
                             .addComponent(JLName))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPublisher, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(choiceBoxScore, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                                .addGap(0, 226, Short.MAX_VALUE)))))
+                                .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(chbxScore, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                .addComponent(cbxPublisher, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 55, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -134,23 +141,22 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
                     .addComponent(JLName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLPublisher)
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JLPrice)
-                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLPublisher)
+                    .addComponent(cbxPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLPrice)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JLScore)
-                    .addComponent(choiceBoxScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chbxScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLRDate)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(btnSubmit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancel)
@@ -159,10 +165,6 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPublisherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPublisherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPublisherActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
@@ -189,10 +191,10 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel JLScore;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSubmit;
-    private java.awt.Choice choiceBoxScore;
+    private javax.swing.JComboBox<String> cbxPublisher;
+    private java.awt.Choice chbxScore;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtPublisher;
     // End of variables declaration//GEN-END:variables
 }

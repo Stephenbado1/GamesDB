@@ -10,20 +10,12 @@ package bo;
  * @author stephenbadeaux
  */
 public class Publisher {
-    private int cId;
     private String pName;
     private String pCountry;
 
-    public Publisher(int cId, String pName, String pCountry) {
-        this.cId = cId;
+    public Publisher(String pName, String pCountry) {
         this.pName = pName;
         this.pCountry = pCountry;
-    }
-    public int getcId() {
-        return cId;
-    }
-    public void setcId(int cId) {
-        this.cId = cId;
     }
     public String getpName() {
         return pName;
@@ -36,6 +28,10 @@ public class Publisher {
     }
     public void setpCountry(String pCountry) {
         this.pCountry = pCountry;
+    }
+    @Override
+    public String toString() {
+        return getpName();
     }
 }
 
