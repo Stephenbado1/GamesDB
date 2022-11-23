@@ -24,7 +24,7 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
     private void populateGames(){
         String keyword = txtKeyword.getText();
         List<Game> games = gameHandler.loadGames(keyword);
-        String columns[] = new String[]{"ID", "Name", "Release Date", "Metacritic Score", "Staff ID"}; 
+        String columns[] = new String[]{"Game ID", "Name", "Publisher", "Release Date", "Metacritic Score"}; 
         DefaultTableModel tblModel = new DefaultTableModel(columns, 0);
         games.forEach((game)->{
             //convert game into a row and add it.
@@ -72,8 +72,6 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblGames);
 
         jLabel1.setText("Search");
-
-        txtKeyword.setText("jTextField1");
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {

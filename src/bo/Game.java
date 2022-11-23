@@ -14,12 +14,14 @@ import javax.print.attribute.standard.PrinterName;
  * @author stephenbadeaux
  */
 public class Game {
+    private int gId;
     private String gameName;
     private String pubName;
-    private int releaseDate;
+    private Date releaseDate;
     private int score;
 
-    public Game(String gameName, String pubName, int releaseDate, int score) {
+    public Game(int gId, String gameName, String pubName, Date releaseDate, int score) {
+        this.gId = gId;
         this.gameName = gameName;
         this.pubName = pubName;
         this.releaseDate = releaseDate;
@@ -27,12 +29,19 @@ public class Game {
     }
     public Vector getRow(){
         Vector vec = new Vector();
+        vec.add(this.gId);
         vec.add(this.gameName);
         vec.add(this.pubName);
         vec.add(this.releaseDate);
         vec.add(this.score);
         
         return vec;
+    }
+    public int getgId() {
+        return gId;
+    }
+    public void setgId(int gId) {
+        this.gId = gId;
     }
     public String getGameName() {
         return gameName;
@@ -46,10 +55,10 @@ public class Game {
     public void setPubName(String pubName) {
         this.pubName = pubName;
     }
-    public int getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
-    public void setReleaseDate(int releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
     public int getScore() {

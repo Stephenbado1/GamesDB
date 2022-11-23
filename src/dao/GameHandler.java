@@ -11,6 +11,7 @@ import java.util.List;
 import utils.SQLUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,9 +43,9 @@ public class GameHandler {
                 int gId = rs.getInt("gID");
                 String gameName = rs.getString("gameName");
                 String pubName = rs.getString("pubName");
-                int releaseDate = rs.getInt("releaseDate");
+                Date releaseDate = rs.getDate("releaseDate");
                 int score = rs.getInt("score");
-                Game game = new Game(gameName, pubName, releaseDate, score);
+                Game game = new Game(gId, gameName, pubName, releaseDate, score);
                 games.add(game);
             }
         } catch (SQLException ex) {
