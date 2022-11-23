@@ -40,7 +40,7 @@ public class FrmMain extends javax.swing.JFrame {
         });
     }
     private void showForm(String frmName){
-        showForm(frmName, false);
+        showForm(frmName, true);
     }
     private void showForm(String frmName, boolean checkLogin){
         if(checkLogin && GlobalData.stf == null){
