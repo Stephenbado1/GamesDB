@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utils.PasswordHasher;
 /**
  *
  * @author stephenbadeaux
@@ -23,10 +22,9 @@ public class StaffHandler {
         sqlUtil = new SQLUtil();
     }
     public Staff login(String username, String password){
-        String passwordHash = PasswordHasher.hashPassword(password);
         Staff stf = null;
         try {
-            String cmd = String.format("Select staffID, staffName from Staff where staffUN = '%s' and staffPW = '%s';", username, passwordHash);
+            String cmd = String.format("Select staffID, staffName from Staff where staffUN = '%s' and staffPW = '%s';", username, password);
             ResultSet rs = sqlUtil.executeQuery(cmd);
             if (rs.next()){
                 //Get info
