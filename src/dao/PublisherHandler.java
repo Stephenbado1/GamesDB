@@ -20,10 +20,8 @@ import java.util.logging.Logger;
  */
 public class PublisherHandler {
     private SQLUtil SQLUtil;
-
     public PublisherHandler() {
         SQLUtil = new SQLUtil();
-        
     }
     public List<Publisher> getPublisher(){
         List<Publisher> results = new ArrayList<Publisher>();
@@ -41,5 +39,4 @@ public class PublisherHandler {
         }
         return results;
     }
-    
 }
