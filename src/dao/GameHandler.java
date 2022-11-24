@@ -32,6 +32,12 @@ public class GameHandler {
         String cmd = String.format(cmdTemplate, gameName, pubName, releaseDate, score);
         return sqlUtil.executeUpdate(cmd);
     }
+    
+    public int deleteGame(int gID){
+        String cmdTemplate = "delete from Game where sID = %d";
+        String cmd = String.format(cmdTemplate, gID);
+        return sqlUtil.executeUpdate(cmd);
+    }
     public List<Game> loadGames(String keyword){
         List<Game> games = new ArrayList<>();
         String cmdTemplate = "Select gID, gameName, pubName, releaseDate, score from Games where gameName like '%s'";
