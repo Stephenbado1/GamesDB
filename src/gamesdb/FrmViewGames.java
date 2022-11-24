@@ -62,7 +62,7 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         txtKeyword = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnRefresh = new javax.swing.JButton();
+        btnrefresh = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -103,10 +103,10 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
             }
         });
 
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnrefresh.setText("Refresh");
+        btnrefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+                btnrefreshActionPerformed(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnDelete))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnRefresh)
+                        .addComponent(btnrefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,7 +140,7 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
-                    .addComponent(btnRefresh))
+                    .addComponent(btnrefresh))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
@@ -162,10 +162,9 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         if(selectedRow!=-1) {
             //perform the delete
             int gID = (int)tblGames.getValueAt(selectedRow, 0);
-            int ret = JOptionPane.showConfirmDialog(this, String.format("Are you sure you want to delete gID:%d?", gID));
+            int ret = JOptionPane.showConfirmDialog(this, String.format("Are you want to delete %d", gID));
             if (ret == JOptionPane.OK_OPTION) {
                 gameHandler.deleteGame(gID);
-                JOptionPane.showMessageDialog(this, "Game deleted!");
                 refreshTableGames();
             }
         } else{
@@ -173,10 +172,10 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
         txtKeyword.setText(null);
         refreshTableGames();
-    }//GEN-LAST:event_btnRefreshActionPerformed
+    }//GEN-LAST:event_btnrefreshActionPerformed
 
     private void tblGamesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGamesMouseClicked
         // Know if it is a double click
@@ -192,8 +191,8 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnrefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblGames;

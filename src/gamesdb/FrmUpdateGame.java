@@ -33,27 +33,28 @@ public class FrmUpdateGame extends javax.swing.JDialog {
         publishers = new PublisherHandler().getPublisher();
         ComboBoxModel cbxModel = new DefaultComboBoxModel(publishers.toArray());
         cbxPublisher.setModel(cbxModel);
+        
     }
     private void populateScore(){
         for(int i=100; i>=0; i--){
             chbxScore.addItem(Integer.toString(i));
         }
     }
+    
+    
     public FrmUpdateGame(java.awt.Frame parent, boolean modal) {
         initComponents();
         populatePublishers();
         populateScore();
     }
-    public Game game;
+    private Game game;
     public void setGame(Game game){
         this.game = game;
         //load data into form
         txtName.setText(game.getGameName());
-        txtDate.setText(game.getReleaseDate().toString());
-        chbxScore.getSelectedIndex();
         //set the selected publisher
         publishers.forEach(pub->{
-            if(pub.getpName().equals(game.getPubName())){
+            if(pub.getpName() == game.getPubName()){
                 cbxPublisher.setSelectedItem(pub);
             }
         });
@@ -71,14 +72,13 @@ public class FrmUpdateGame extends javax.swing.JDialog {
         JLName1 = new javax.swing.JLabel();
         JLPublisher1 = new javax.swing.JLabel();
         JLScore1 = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         chbxScore = new java.awt.Choice();
         JLRDate1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         cbxPublisher = new javax.swing.JComboBox<>();
         txtDate = new javax.swing.JTextField();
-        txtUpdateStudent = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,10 +88,10 @@ public class FrmUpdateGame extends javax.swing.JDialog {
 
         JLScore1.setText("Game Score");
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -119,46 +119,38 @@ public class FrmUpdateGame extends javax.swing.JDialog {
 
         txtDate.setText("YYYYMMDD");
 
-        txtUpdateStudent.setText("Update Student");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JLRDate1)
-                                    .addComponent(JLScore1)
-                                    .addComponent(JLPublisher1)
-                                    .addComponent(JLName1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnCancel)))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chbxScore, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(JLRDate1)
+                            .addComponent(JLScore1)
+                            .addComponent(JLPublisher1)
+                            .addComponent(JLName1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(txtUpdateStudent)))
+                        .addContainerGap()
+                        .addComponent(btnCancel)))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbxScore, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(txtUpdateStudent)
-                .addGap(29, 29, 29)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLName1)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbxPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,9 +163,9 @@ public class FrmUpdateGame extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLRDate1)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
+                    .addComponent(btnSubmit)
                     .addComponent(btnCancel))
                 .addContainerGap())
         );
@@ -181,9 +173,9 @@ public class FrmUpdateGame extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
        
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
@@ -207,12 +199,10 @@ public class FrmUpdateGame extends javax.swing.JDialog {
     private javax.swing.JLabel JLRDate1;
     private javax.swing.JLabel JLScore1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cbxPublisher;
     private java.awt.Choice chbxScore;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtName;
-    private javax.swing.JLabel txtUpdateStudent;
     // End of variables declaration//GEN-END:variables
-
 }
