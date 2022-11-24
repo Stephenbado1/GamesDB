@@ -50,7 +50,7 @@ public class FrmUpdateGame extends javax.swing.JDialog {
         //load data into form
         txtName.setText(game.getGameName());
         txtDate.setText(game.getReleaseDate().toString());
-        chbxScore.getSelectedIndex();
+        chbxScore.getSelectedIndex();//not working correctly
         //set the selected publisher
         publishers.forEach(pub->{
             if(pub.getpName().equals(game.getPubName())){
