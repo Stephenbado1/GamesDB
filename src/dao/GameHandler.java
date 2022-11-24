@@ -32,10 +32,14 @@ public class GameHandler {
         String cmd = String.format(cmdTemplate, gameName, pubName, releaseDate, score);
         return sqlUtil.executeUpdate(cmd);
     }
-    
     public int deleteGame(int gID){
         String cmdTemplate = "delete from Game where sID = %d";
         String cmd = String.format(cmdTemplate, gID);
+        return sqlUtil.executeUpdate(cmd);
+    }
+    public int updateGame(int gID, String gameName, String pubName, int releaseDate, int score){
+        String cmdTemplate = "Update Game set gameName = '%s', pubName = '%s', releaseDate = '%d', score = '%d' where gID = %d;";
+        String cmd = String.format(cmdTemplate, gameName, pubName, releaseDate, score, gID);
         return sqlUtil.executeUpdate(cmd);
     }
     public List<Game> loadGames(String keyword){
