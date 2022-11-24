@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -33,12 +33,12 @@ public class GameHandler {
         return sqlUtil.executeUpdate(cmd);
     }
     public int deleteGame(int gID){
-        String cmdTemplate = "delete from Game where sID = %d";
+        String cmdTemplate = "delete from Games where gID = %d";
         String cmd = String.format(cmdTemplate, gID);
         return sqlUtil.executeUpdate(cmd);
     }
-    public int updateGame(int gID, String gameName, String pubName, int releaseDate, int score){
-        String cmdTemplate = "Update Game set gameName = '%s', pubName = '%s', releaseDate = '%d', score = '%d' where gID = %d;";
+    public int updateGame(String gameName, String pubName, int releaseDate, int score, int gID){
+        String cmdTemplate = "Update Games set gameName = '%s', pubName = '%s', releaseDate = '%d', score = '%d' where gID = '%d';";
         String cmd = String.format(cmdTemplate, gameName, pubName, releaseDate, score, gID);
         return sqlUtil.executeUpdate(cmd);
     }

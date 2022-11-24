@@ -90,6 +90,8 @@ public class FrmMain extends javax.swing.JFrame {
         mniDeleteGame = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jdpContainer.setLayout(null);
         getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
 
         mnuFile.setText("File");
@@ -128,6 +130,11 @@ public class FrmMain extends javax.swing.JFrame {
         mnuGame.add(mniAddGame);
 
         mniUpdateGame.setText("Update");
+        mniUpdateGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniUpdateGameActionPerformed(evt);
+            }
+        });
         mnuGame.add(mniUpdateGame);
 
         mniViewGame.setText("View");
@@ -174,6 +181,10 @@ public class FrmMain extends javax.swing.JFrame {
     private void mniViewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewGameActionPerformed
         showForm("frmViewGames");
     }//GEN-LAST:event_mniViewGameActionPerformed
+
+    private void mniUpdateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniUpdateGameActionPerformed
+        showForm("frmViewGames");
+    }//GEN-LAST:event_mniUpdateGameActionPerformed
 
     /**
      * @param args the command line arguments
