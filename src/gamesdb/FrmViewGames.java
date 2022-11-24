@@ -173,6 +173,7 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
+        txtKeyword.setText(null);
         refreshTableGames();
     }//GEN-LAST:event_btnrefreshActionPerformed
 
