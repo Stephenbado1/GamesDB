@@ -32,7 +32,7 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         
     }
     private void populateScore(){
-        for(int i=100; i>=0; i--){
+        for(int i=0; i<=100; i++){
             chbxScore.addItem(Integer.toString(i));
         }
     }
