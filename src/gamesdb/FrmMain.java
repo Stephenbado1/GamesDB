@@ -168,7 +168,7 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mniAddGameActionPerformed
 
     private void mniDeleteGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDeleteGameActionPerformed
-        // TODO add your handling code here:
+        showForm("frmViewGames");
     }//GEN-LAST:event_mniDeleteGameActionPerformed
 
     private void mniViewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewGameActionPerformed
