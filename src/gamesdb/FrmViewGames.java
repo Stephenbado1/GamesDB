@@ -8,6 +8,7 @@ package gamesdb;
 import bo.Game;
 import dao.GameHandler;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,14 +22,16 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
      */
     
     private GameHandler gameHandler = new GameHandler();
+    private void refreshTableGames(){
+        populateGames();
+    }
     private void populateGames(){
         String keyword = txtKeyword.getText();
         List<Game> games = gameHandler.loadGames(keyword);
         String columns[] = new String[]{"Game ID", "Name", "Publisher", "Release Date", "Metacritic Score"}; 
         DefaultTableModel tblModel = new DefaultTableModel(columns, 0);
-        games.forEach((game)->{
-            //convert game into a row and add it.
-            tblModel.addRow(game.getRow());
+        games.forEach((gme)->{;//convert game into a row and add it.
+            tblModel.addRow(gme.getRow());
         });
         tblGames.setModel(tblModel);
     }
@@ -81,6 +84,11 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +133,22 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         populateGames();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        //get the selected row
+        int selectedRow = tblGames.getSelectedRow();
+        if(selectedRow!=-1) {
+            //perform the delete
+            int gID = (int)tblGames.getValueAt(selectedRow, 0);
+            int ret = JOptionPane.showConfirmDialog(this, String.format("Are you want to delete %d", gID));
+            if (ret == JOptionPane.OK_OPTION) {
+                gameHandler.deleteGame(gID);
+                refreshTableGames();
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "Please select a game to delete");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
