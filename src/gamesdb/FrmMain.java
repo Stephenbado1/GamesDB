@@ -27,6 +27,8 @@ public class FrmMain extends javax.swing.JFrame {
     FrmLogin frmLogin = new FrmLogin();
     FrmAddGame frmAddGame = new FrmAddGame();
     FrmViewGames frmViewGames = new FrmViewGames();
+    FrmAddStaff frmAddStaff = new FrmAddStaff();
+    FrmViewStaff frmViewStaff = new FrmViewStaff();
     Map<String, JInternalFrame> forms = new HashMap<>();
     
     public FrmMain() {
@@ -34,6 +36,8 @@ public class FrmMain extends javax.swing.JFrame {
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddGame", frmAddGame);
         forms.put("frmViewGames", frmViewGames);
+        forms.put("frmAddStaff", frmAddStaff);
+        forms.put("frmViewStaff", frmViewStaff);
         //Add all to JDesktopPane
         forms.values().forEach((frm)->{
             jdpContainer.add(frm);
@@ -88,10 +92,11 @@ public class FrmMain extends javax.swing.JFrame {
         mniUpdateGame = new javax.swing.JMenuItem();
         mniViewGame = new javax.swing.JMenuItem();
         mniDeleteGame = new javax.swing.JMenuItem();
+        mnuStaff = new javax.swing.JMenu();
+        mniAddStaff = new javax.swing.JMenuItem();
+        mniViewStaff = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jdpContainer.setLayout(null);
         getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
 
         mnuFile.setText("File");
@@ -155,6 +160,26 @@ public class FrmMain extends javax.swing.JFrame {
 
         mnuManage.add(mnuGame);
 
+        mnuStaff.setText("Staff");
+
+        mniAddStaff.setText("Add");
+        mniAddStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniAddStaffActionPerformed(evt);
+            }
+        });
+        mnuStaff.add(mniAddStaff);
+
+        mniViewStaff.setText("View");
+        mniViewStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniViewStaffActionPerformed(evt);
+            }
+        });
+        mnuStaff.add(mniViewStaff);
+
+        mnuManage.add(mnuStaff);
+
         jMenuBar1.add(mnuManage);
 
         setJMenuBar(jMenuBar1);
@@ -185,6 +210,14 @@ public class FrmMain extends javax.swing.JFrame {
     private void mniUpdateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniUpdateGameActionPerformed
         showForm("frmViewGames");
     }//GEN-LAST:event_mniUpdateGameActionPerformed
+
+    private void mniViewStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewStaffActionPerformed
+        showForm("frmViewStaff");
+    }//GEN-LAST:event_mniViewStaffActionPerformed
+
+    private void mniAddStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAddStaffActionPerformed
+        showForm("frmAddStaff");
+    }//GEN-LAST:event_mniAddStaffActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,14 +260,17 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpContainer;
     private javax.swing.JMenuItem mniAddGame;
+    private javax.swing.JMenuItem mniAddStaff;
     private javax.swing.JMenuItem mniDeleteGame;
     private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenuItem mniLogin;
     private javax.swing.JMenuItem mniLogout;
     private javax.swing.JMenuItem mniUpdateGame;
     private javax.swing.JMenuItem mniViewGame;
+    private javax.swing.JMenuItem mniViewStaff;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenu mnuGame;
     private javax.swing.JMenu mnuManage;
+    private javax.swing.JMenu mnuStaff;
     // End of variables declaration//GEN-END:variables
 }
