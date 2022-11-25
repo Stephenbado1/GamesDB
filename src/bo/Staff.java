@@ -5,6 +5,8 @@
  */
 package bo;
 
+import java.util.Vector;
+
 /**
  *
  * @author stephenbadeaux
@@ -12,10 +14,20 @@ package bo;
 public class Staff {
     private int stfId;
     private String stfName;    
+    private int stfPerms;
 
-    public Staff(int stfId, String stfName) {
+    public Staff(int stfId, String stfName, int stfPerms) {
         this.stfId = stfId;
         this.stfName = stfName;
+        this.stfPerms = stfPerms;
+    }
+    public Vector getRow() {
+        Vector vec = new Vector();
+        vec.add(this.stfId);
+        vec.add(this.stfName);
+        vec.add(this.stfPerms);
+        
+        return vec;
     }
     public int getstfId() {
         return stfId;
@@ -28,5 +40,11 @@ public class Staff {
     }
     public void setstfName(String stfName) {
         this.stfName = stfName;
+    }
+    public int getstfPerms() {
+        return stfPerms;
+    }
+    public void setstfPerms(int perms) {
+        this.stfPerms = perms;
     }
 }
