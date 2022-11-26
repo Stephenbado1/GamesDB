@@ -27,7 +27,7 @@ public class FrmViewStaff extends javax.swing.JInternalFrame {
     private void populateStaff() {
         String keyword = txtKeyword.getText();
         staffList = staffHandler.loadStaff(keyword);
-        String columns[] = new String[]{"Game ID", "Name", "Publisher", "Release Date", "Metacritic Score"}; 
+        String columns[] = new String[]{"Staff ID", "Name", "Permissions"}; 
         DefaultTableModel tblModel = new DefaultTableModel(columns, 0){
             @Override
             public boolean isCellEditable(int row, int column) {

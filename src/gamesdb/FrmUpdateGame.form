@@ -162,7 +162,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="txtUpdateStudent">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update Student"/>
+        <Property name="text" type="java.lang.String" value="Update Game"/>
       </Properties>
     </Component>
   </SubComponents>

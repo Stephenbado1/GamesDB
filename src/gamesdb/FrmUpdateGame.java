@@ -35,7 +35,7 @@ public class FrmUpdateGame extends javax.swing.JDialog {
         cbxPublisher.setModel(cbxModel);
     }
     private void populateScore(){
-        for(int i=100; i>=0; i--){
+        for(int i=0; i<=100; i++){
             chbxScore.addItem(Integer.toString(i));
         }
     }
@@ -50,7 +50,7 @@ public class FrmUpdateGame extends javax.swing.JDialog {
         //load data into form
         txtName.setText(game.getGameName());
         txtDate.setText(game.getReleaseDate().toString());
-        chbxScore.getSelectedIndex();//not working correctly
+        chbxScore.select(game.getScore());
         //set the selected publisher
         publishers.forEach(pub->{
             if(pub.getpName().equals(game.getPubName())){
@@ -119,7 +119,7 @@ public class FrmUpdateGame extends javax.swing.JDialog {
 
         txtDate.setText("YYYYMMDD");
 
-        txtUpdateStudent.setText("Update Student");
+        txtUpdateStudent.setText("Update Game");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
