@@ -8,19 +8,17 @@ package gamesdb;
 import bo.Game;
 import dao.GameHandler;
 import java.util.List;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author stephenbadeaux
  */
 public class FrmViewGames extends javax.swing.JInternalFrame {
-
     /**
      * Creates new form FrmViewGames
      */
-    
     private GameHandler gameHandler = new GameHandler();
     private void refreshTableGames(){
         populateGames();
@@ -34,8 +32,7 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; //To change body of generated methods, choose Tools | Templates.
-            }
-            
+            } 
         };
         games.forEach((gme)->{;//convert game into a row and add it.
             tblModel.addRow(gme.getRow());
@@ -46,7 +43,6 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
         initComponents();
         populateGames();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,6 +183,10 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
             FrmUpdateGame frmUpdateGame = new FrmUpdateGame(null, true);
             frmUpdateGame.setGame(game);
             frmUpdateGame.setVisible(true);
+            if (frmUpdateGame.getReturnStatus() == FrmUpdateGame.RET_OK){
+                //Refresh table
+                refreshTableGames();
+            }
         }
     }//GEN-LAST:event_tblGamesMouseClicked
 
