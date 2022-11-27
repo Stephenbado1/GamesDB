@@ -10,7 +10,8 @@ package utils;
  */
 public class InputSanitizer {
     public static String sanitize(String input) {
-        String sanitized = input.replace(" ", "").replace("\\", "").replace("'", "").replace("\"", "");
+        String sanitized = input.replace(" ", "").replace("\\", "")
+                .replace("'", "").replace("\"", "").replace(";", "");
         return sanitized;
     }
 }
