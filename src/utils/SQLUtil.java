@@ -21,7 +21,7 @@ public class SQLUtil {
     private Statement stm;
 
     public SQLUtil() {
-        String url = "jdbc:mysql://localhost:8889/Game";
+        String url = "jdbc:mysql://localhost:8889/Game?allowMultiQueries=false";
         String username = "root";
         String password = "root";
         
