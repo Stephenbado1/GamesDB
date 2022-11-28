@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utils.GlobalData;
 /**
  *
  * @author stephenbadeaux
@@ -153,19 +154,23 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        //get the selected row
-        int selectedRow = tblGames.getSelectedRow();
-        if(selectedRow!=-1) {
-            //perform the delete
-            int gID = (int)tblGames.getValueAt(selectedRow, 0);
-            int ret = JOptionPane.showConfirmDialog(this, String.format("Are you sure you want to delete gID:%d?", gID));
-            if (ret == JOptionPane.OK_OPTION) {
-                gameHandler.deleteGame(gID);
-                JOptionPane.showMessageDialog(this, "Game deleted!");
-                refreshTableGames();
+        if(GlobalData.stf.getstfPerms() > 0) {
+            //get the selected row
+            int selectedRow = tblGames.getSelectedRow();
+            if(selectedRow!=-1) {
+                //perform the delete
+                int gID = (int)tblGames.getValueAt(selectedRow, 0);
+                int ret = JOptionPane.showConfirmDialog(this, String.format("Are you sure you want to delete gID:%d?", gID));
+                if (ret == JOptionPane.OK_OPTION) {
+                    gameHandler.deleteGame(gID);
+                    JOptionPane.showMessageDialog(this, "Game deleted!");
+                    refreshTableGames();
+                }
+            } else{
+                JOptionPane.showMessageDialog(this, "Please select a game to delete.");
             }
-        } else{
-            JOptionPane.showMessageDialog(this, "Please select a game to delete");
+        } else {
+            JOptionPane.showMessageDialog(this, "You don't have permission to perform this function.");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -175,19 +180,22 @@ public class FrmViewGames extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void tblGamesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGamesMouseClicked
-        // Know if it is a double click
-        if(evt.getClickCount() == 2) {
-            //Get the selected clicks
-            Game game = games.get(tblGames.getSelectedRow());
-            //show the form
-            FrmUpdateGame frmUpdateGame = new FrmUpdateGame(null, true);
-            frmUpdateGame.setGame(game);
-            frmUpdateGame.setVisible(true);
-            if (frmUpdateGame.getReturnStatus() == FrmUpdateGame.RET_OK){
-                //Refresh table
-                refreshTableGames();
+            if(GlobalData.stf.getstfPerms() > 0) {
+            // Know if it is a double click
+            if(evt.getClickCount() == 2) {
+                //Get the selected clicks
+                Game game = games.get(tblGames.getSelectedRow());
+                //show the form
+                FrmUpdateGame frmUpdateGame = new FrmUpdateGame(null, true);
+                frmUpdateGame.setGame(game);
+                frmUpdateGame.setVisible(true);
+                if (frmUpdateGame.getReturnStatus() == FrmUpdateGame.RET_OK){
+                    //Refresh table
+                    refreshTableGames();
+                }
             }
         }
+        
     }//GEN-LAST:event_tblGamesMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

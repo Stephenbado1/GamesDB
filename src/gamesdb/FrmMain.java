@@ -7,12 +7,12 @@ package gamesdb;
 
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import utils.GlobalData;
 
 /**
@@ -29,17 +29,29 @@ public class FrmMain extends javax.swing.JFrame {
     FrmViewGames frmViewGames = new FrmViewGames();
     FrmAddStaff frmAddStaff = new FrmAddStaff();
     FrmViewStaff frmViewStaff = new FrmViewStaff();
-    Map<String, JInternalFrame> forms = new HashMap<>();
+    
+    Map<String, JInternalFrame> formsAuth2 = new HashMap<>();
+    Map<String, JInternalFrame> formsAuth1 = new HashMap<>();
+    Map<String, JInternalFrame> formsAuth0 = new HashMap<>();
     
     public FrmMain() {
         initComponents();
-        forms.put("frmLogin", frmLogin);
-        forms.put("frmAddGame", frmAddGame);
-        forms.put("frmViewGames", frmViewGames);
-        forms.put("frmAddStaff", frmAddStaff);
-        forms.put("frmViewStaff", frmViewStaff);
+        
+        formsAuth0.put("frmLogin", frmLogin);
+        formsAuth1.put("frmLogin", frmLogin);
+        formsAuth2.put("frmLogin", frmLogin);
+        
+        formsAuth1.put("frmAddGame", frmAddGame);
+        formsAuth2.put("frmAddGame", frmAddGame);
+        
+        formsAuth0.put("frmViewGames", frmViewGames);
+        formsAuth1.put("frmViewGames", frmViewGames);
+        formsAuth2.put("frmViewGames", frmViewGames);
+        
+        formsAuth2.put("frmAddStaff", frmAddStaff);
+        formsAuth2.put("frmViewStaff", frmViewStaff);
         //Add all to JDesktopPane
-        forms.values().forEach((frm)->{
+        formsAuth2.values().forEach((frm)->{
             jdpContainer.add(frm);
         });
     }
@@ -49,21 +61,30 @@ public class FrmMain extends javax.swing.JFrame {
     private void showForm(String frmName, boolean checkLogin){
         if(checkLogin && GlobalData.stf == null){
             showForm("frmLogin", false);
-        }else{
+        } else {
+            Map<String, JInternalFrame> forms = formsAuth0;
+            if(checkLogin) {
+                switch(GlobalData.stf.getstfPerms()) {
+                    case 1 -> forms = formsAuth1;
+                    case 2 -> forms = formsAuth2;
+                }
+            }
             try {
                 //Authorization
-                if(forms.get(frmName).isClosed()){
-                    try {
-                        forms.put(frmName, forms.get(frmName).getClass().newInstance());
-                        jdpContainer.add(forms.get(frmName));
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+                if(forms.containsKey(frmName)) {
+                    if(forms.get(frmName).isClosed()){
+                        try {
+                            forms.put(frmName, forms.get(frmName).getClass().newInstance());
+                            jdpContainer.add(forms.get(frmName));
+                        } catch (InstantiationException | IllegalAccessException ex) {
+                            Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
+                    forms.get(frmName).setVisible(true);
+                    forms.get(frmName).setSelected(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "You don't have permission to view this form.");
                 }
-                forms.get(frmName).setVisible(true);
-                forms.get(frmName).setSelected(true);
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -247,12 +268,10 @@ public class FrmMain extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FrmMain frmMain = new FrmMain();
-                frmMain.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-                frmMain.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FrmMain frmMain = new FrmMain();
+            frmMain.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+            frmMain.setVisible(true);
         });
     }
 
