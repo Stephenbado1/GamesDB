@@ -29,6 +29,7 @@ public class FrmMain extends javax.swing.JFrame {
     FrmViewGames frmViewGames = new FrmViewGames();
     FrmAddStaff frmAddStaff = new FrmAddStaff();
     FrmViewStaff frmViewStaff = new FrmViewStaff();
+
     FrmViewSale frmViewSale = new FrmViewSale();
     FrmAddSale frmAddSale = new FrmAddSale();
     
@@ -38,6 +39,7 @@ public class FrmMain extends javax.swing.JFrame {
     
     public FrmMain() {
         initComponents();
+
         formsAuth0.put("frmViewSale", frmViewSale);
         formsAuth1.put("frmViewSale", frmViewSale);
         formsAuth2.put("frmViewSale", frmViewSale);
@@ -58,7 +60,6 @@ public class FrmMain extends javax.swing.JFrame {
         
         formsAuth2.put("frmAddStaff", frmAddStaff);
         formsAuth2.put("frmViewStaff", frmViewStaff);
-        
 
         //Add all to JDesktopPane
         formsAuth2.values().forEach((frm)->{
