@@ -10,6 +10,7 @@ import dao.SaleHandler;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utils.GlobalData;
 
 /**
  *
@@ -172,18 +173,22 @@ public class FrmViewSale extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        //Get selected row
-        int selectedRow = tblSales.getSelectedRow();
-        if (selectedRow != -1){
-            //Perform delete
-            int sNo = (int)tblSales.getValueAt(selectedRow, 0);
-            int ret = JOptionPane.showConfirmDialog(this, String.format("Are you sure you want to delete Sale:%d", sNo));
-            if (ret == JOptionPane.OK_OPTION){
-                saleHandler.deleteSale(sNo);
-                refreshTableSales();
+        if(GlobalData.stf.getstfPerms() > 0) {
+            //Get selected row
+            int selectedRow = tblSales.getSelectedRow();
+            if (selectedRow != -1){
+                //Perform delete
+                int sNo = (int)tblSales.getValueAt(selectedRow, 0);
+                int ret = JOptionPane.showConfirmDialog(this, String.format("Are you sure you want to delete Sale:%d", sNo));
+                if (ret == JOptionPane.OK_OPTION){
+                    saleHandler.deleteSale(sNo);
+                    refreshTableSales();
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Please select a sale to delete");
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Please select a sale to delete");
+        } else {
+            JOptionPane.showMessageDialog(this, "You don't have permission to perform this function.");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

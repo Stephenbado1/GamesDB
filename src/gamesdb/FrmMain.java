@@ -31,7 +31,6 @@ public class FrmMain extends javax.swing.JFrame {
     FrmViewStaff frmViewStaff = new FrmViewStaff();
     FrmViewSale frmViewSale = new FrmViewSale();
     FrmAddSale frmAddSale = new FrmAddSale();
-    Map<String, JInternalFrame> forms = new HashMap<>();
     
     Map<String, JInternalFrame> formsAuth2 = new HashMap<>();
     Map<String, JInternalFrame> formsAuth1 = new HashMap<>();
@@ -39,13 +38,12 @@ public class FrmMain extends javax.swing.JFrame {
     
     public FrmMain() {
         initComponents();
-        forms.put("frmLogin", frmLogin);
-        forms.put("frmAddGame", frmAddGame);
-        forms.put("frmViewGames", frmViewGames);
-        forms.put("frmAddStaff", frmAddStaff);
-        forms.put("frmViewStaff", frmViewStaff);
-        forms.put("frmViewSale", frmViewSale);
-        forms.put("frmAddSale", frmAddSale);
+        formsAuth0.put("frmViewSale", frmViewSale);
+        formsAuth1.put("frmViewSale", frmViewSale);
+        formsAuth2.put("frmViewSale", frmViewSale);
+        
+        formsAuth1.put("frmAddSale", frmAddSale);
+        formsAuth2.put("frmAddSale", frmAddSale);
 
         formsAuth0.put("frmLogin", frmLogin);
         formsAuth1.put("frmLogin", frmLogin);
