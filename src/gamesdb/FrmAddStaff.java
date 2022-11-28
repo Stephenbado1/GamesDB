@@ -25,6 +25,7 @@ public class FrmAddStaff extends javax.swing.JInternalFrame {
         choice1.addItem("Administrator");
     }
     public FrmAddStaff() {
+        setTitle("Add Staff");
         initComponents();
         populatePerms();
     }
