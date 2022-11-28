@@ -41,6 +41,7 @@ public class FrmViewStaff extends javax.swing.JInternalFrame {
         jTable1.setModel(tblModel);
     }
     public FrmViewStaff() {
+        setTitle("View Staff");
         initComponents();
         populateStaff();
     }

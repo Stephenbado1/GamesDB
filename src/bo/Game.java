@@ -67,4 +67,9 @@ public class Game {
     public void setScore(int score) {
         this.score = score;
     }
+    @Override
+    public String toString() {
+        return getGameName(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

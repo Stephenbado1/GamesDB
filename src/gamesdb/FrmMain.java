@@ -29,6 +29,9 @@ public class FrmMain extends javax.swing.JFrame {
     FrmViewGames frmViewGames = new FrmViewGames();
     FrmAddStaff frmAddStaff = new FrmAddStaff();
     FrmViewStaff frmViewStaff = new FrmViewStaff();
+
+    FrmViewSale frmViewSale = new FrmViewSale();
+    FrmAddSale frmAddSale = new FrmAddSale();
     
     Map<String, JInternalFrame> formsAuth2 = new HashMap<>();
     Map<String, JInternalFrame> formsAuth1 = new HashMap<>();
@@ -36,7 +39,14 @@ public class FrmMain extends javax.swing.JFrame {
     
     public FrmMain() {
         initComponents();
+
+        formsAuth0.put("frmViewSale", frmViewSale);
+        formsAuth1.put("frmViewSale", frmViewSale);
+        formsAuth2.put("frmViewSale", frmViewSale);
         
+        formsAuth1.put("frmAddSale", frmAddSale);
+        formsAuth2.put("frmAddSale", frmAddSale);
+
         formsAuth0.put("frmLogin", frmLogin);
         formsAuth1.put("frmLogin", frmLogin);
         formsAuth2.put("frmLogin", frmLogin);
@@ -50,6 +60,7 @@ public class FrmMain extends javax.swing.JFrame {
         
         formsAuth2.put("frmAddStaff", frmAddStaff);
         formsAuth2.put("frmViewStaff", frmViewStaff);
+
         //Add all to JDesktopPane
         formsAuth2.values().forEach((frm)->{
             jdpContainer.add(frm);
@@ -113,11 +124,17 @@ public class FrmMain extends javax.swing.JFrame {
         mniUpdateGame = new javax.swing.JMenuItem();
         mniViewGame = new javax.swing.JMenuItem();
         mniDeleteGame = new javax.swing.JMenuItem();
+        mniViewSaleItems = new javax.swing.JMenu();
+        mniAddSale = new javax.swing.JMenuItem();
+        mniViewSale = new javax.swing.JMenuItem();
+        mniDelete = new javax.swing.JMenuItem();
         mnuStaff = new javax.swing.JMenu();
-        mniAddStaff = new javax.swing.JMenuItem();
-        mniViewStaff = new javax.swing.JMenuItem();
+        mniAddStaff1 = new javax.swing.JMenuItem();
+        mniViewStaff1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jdpContainer.setLayout(null);
         getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
 
         mnuFile.setText("File");
@@ -181,23 +198,51 @@ public class FrmMain extends javax.swing.JFrame {
 
         mnuManage.add(mnuGame);
 
+        mniViewSaleItems.setText("Sale");
+
+        mniAddSale.setText("Add");
+        mniAddSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniAddSaleActionPerformed(evt);
+            }
+        });
+        mniViewSaleItems.add(mniAddSale);
+
+        mniViewSale.setText("View");
+        mniViewSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniViewSaleActionPerformed(evt);
+            }
+        });
+        mniViewSaleItems.add(mniViewSale);
+
+        mniDelete.setText("Delete");
+        mniDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDeleteActionPerformed(evt);
+            }
+        });
+        mniViewSaleItems.add(mniDelete);
+
+        mnuManage.add(mniViewSaleItems);
+
         mnuStaff.setText("Staff");
 
-        mniAddStaff.setText("Add");
-        mniAddStaff.addActionListener(new java.awt.event.ActionListener() {
+        mniAddStaff1.setText("Add");
+        mniAddStaff1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniAddStaffActionPerformed(evt);
+                mniAddStaff1ActionPerformed(evt);
             }
         });
-        mnuStaff.add(mniAddStaff);
+        mnuStaff.add(mniAddStaff1);
 
-        mniViewStaff.setText("View");
-        mniViewStaff.addActionListener(new java.awt.event.ActionListener() {
+        mniViewStaff1.setText("View");
+        mniViewStaff1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniViewStaffActionPerformed(evt);
+                mniViewStaff1ActionPerformed(evt);
             }
         });
-        mnuStaff.add(mniViewStaff);
+        mnuStaff.add(mniViewStaff1);
 
         mnuManage.add(mnuStaff);
 
@@ -232,13 +277,33 @@ public class FrmMain extends javax.swing.JFrame {
         showForm("frmViewGames");
     }//GEN-LAST:event_mniUpdateGameActionPerformed
 
-    private void mniViewStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewStaffActionPerformed
-        showForm("frmViewStaff");
-    }//GEN-LAST:event_mniViewStaffActionPerformed
-
-    private void mniAddStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAddStaffActionPerformed
+    private void mniAddStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAddStaff12ActionPerformed
         showForm("frmAddStaff");
-    }//GEN-LAST:event_mniAddStaffActionPerformed
+    }//GEN-LAST:event_mniAddStaff12ActionPerformed
+
+    private void mniAddStaff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAddStaff1ActionPerformed
+        showForm("frmAddStaff");
+    }//GEN-LAST:event_mniAddStaff1ActionPerformed
+
+    private void mniViewStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewActionPerformed
+        showForm("frmViewStaff");
+    }//GEN-LAST:event_mniViewActionPerformed
+
+    private void mniViewStaff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewStaff1ActionPerformed
+        showForm("frmViewStaff");
+    }//GEN-LAST:event_mniViewStaff1ActionPerformed
+
+    private void mniAddSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAddSaleActionPerformed
+        showForm("frmAddSale");
+    }//GEN-LAST:event_mniAddSaleActionPerformed
+
+    private void mniViewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniViewSaleActionPerformed
+        showForm("frmViewSale");
+    }//GEN-LAST:event_mniViewSaleActionPerformed
+
+    private void mniDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDeleteActionPerformed
+        showForm("frmViewSale");
+    }//GEN-LAST:event_mniDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,14 +344,18 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpContainer;
     private javax.swing.JMenuItem mniAddGame;
-    private javax.swing.JMenuItem mniAddStaff;
+    private javax.swing.JMenuItem mniAddSale;
+    private javax.swing.JMenuItem mniAddStaff1;
+    private javax.swing.JMenuItem mniDelete;
     private javax.swing.JMenuItem mniDeleteGame;
     private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenuItem mniLogin;
     private javax.swing.JMenuItem mniLogout;
     private javax.swing.JMenuItem mniUpdateGame;
     private javax.swing.JMenuItem mniViewGame;
-    private javax.swing.JMenuItem mniViewStaff;
+    private javax.swing.JMenuItem mniViewSale;
+    private javax.swing.JMenu mniViewSaleItems;
+    private javax.swing.JMenuItem mniViewStaff1;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenu mnuGame;
     private javax.swing.JMenu mnuManage;

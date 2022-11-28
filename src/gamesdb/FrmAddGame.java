@@ -28,7 +28,6 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         List<Publisher> publishers = new PublisherHandler().getPublisher();
         ComboBoxModel cbxModel = new DefaultComboBoxModel(publishers.toArray());
         cbxPublisher.setModel(cbxModel);
-        
     }
     private void populateScore(){
         for(int i=0; i<=100; i++){
@@ -97,6 +96,11 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
         cbxPublisher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtDate.setText("YYYYMMDD");
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,6 +190,10 @@ public class FrmAddGame extends javax.swing.JInternalFrame {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
